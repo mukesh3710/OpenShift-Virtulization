@@ -77,10 +77,7 @@ OpenShift is a Kubernetes-based container platform by Red Hat that simplifies bu
 - Operators: Automate application lifecycle management (e.g., database operators like etcd or PostgreSQL).
 - Source-to-Image (S2I): Automates building container images directly from source code.
 - Helm Charts: Simplifies deploying and managing applications using pre-configured templates.
-- Network Plugins: Enhance networking (e.g., OpenShift SDN, OVN-Kubernetes).
-* CNI (OVS/OVN): Provides a single interface for container networking.
-* Multus: Enables multiple network interfaces for pods.
-* MetalLB: Offers L-4 network load balancing for bare-metal environments.
+- Network Plugins: Enhance networking (e.g., OpenShift SDN, OVN-Kubernetes). CNI (OVS/OVN): Provides a single interface for container networking. Multus: Enables multiple network interfaces for pods. MetalLB: Offers L-4 network load balancing for bare-metal environments.
 - Router Service (HAProxy): Acts as an L-7 software-based load balancer for routing traffic to applications.
 - Monitoring and Logging Plugins: Integrate tools like Prometheus, Grafana, Alertmanager, and Loki for observability.
 - Authentication Plugins: Enable integration with external identity providers (e.g., LDAP, OIDC) for secure access.
