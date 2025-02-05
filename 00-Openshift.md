@@ -1,5 +1,5 @@
 
-## Red Hat OpenShift Virtualization
+## Red Hat OpenShift
 
 ### Hardware Virtualization (VM-Based)
 Hardware virtualization enables multiple virtual machines (VMs) to run on a single physical server using a hypervisor, which abstracts the underlying hardware and allocates resources dynamically.
@@ -86,3 +86,25 @@ OpenShift is a Kubernetes-based container platform by Red Hat that simplifies bu
 - Certificate Management: Dynamically update and renew TLS certificates for secure communication.
 - ETCD Backup: Automates backup and recovery of the etcd database, ensuring cluster reliability.
 
+---
+
+### Kubernetes architecture
+
+Control Plane (Master Nodes - The Bosses):  The Control Plane is like the management team of your Kubernetes cluster. They don't actually run your applications, but they're in charge of making sure everything runs smoothly.
+- API Server (kube-apiserver): This is the receptionist. Everyone talks to the API Server to give instructions to the cluster.  It's the gatekeeper, making sure you're allowed to do what you're asking.
+- Scheduler (kube-scheduler): This is the planner.  When you want to run an application, the Scheduler decides which worker node is the best place for it to live, based on things like how much CPU and memory it needs.
+- Controller Manager (kube-controller-manager): This is the maintenance crew. It's a bunch of little helpers, each with a specific job.  For example, the Node Controller makes sure all the worker nodes are healthy.  The Deployment Controller makes sure you have the right number of copies of your application running.
+- etcd: This is the memory. It's a database that stores all the important information about your cluster, like which applications are running and where.
+
+Data Plane (Worker Nodes - The Workers): These are the machines where your actual applications run.
+- kubelet: This is the worker's helper. It lives on each worker node and takes instructions from the Control Plane. It's responsible for starting and stopping your application containers.
+- kube-proxy: This is the traffic director. It makes sure that when someone tries to access your application, the request gets sent to the right place, even if the application is running in multiple containers on different worker nodes.
+- Container Runtime (e.g., Docker, containerd): This is the engine. It's the software that actually runs your application containers. Think of it like the engine in a car.
+
+---
+
+### Openshift architecture (extra)
+- Openshift-apiserver: This is the API server specifically for OpenShift.  While it builds upon the Kubernetes API server, it adds endpoints and functionality specific to OpenShift resources, like Routes (for external access), BuildConfigs (for defining build processes), and ImageStreams (for managing container images).  It's like the Kubernetes API server, but with extra features for OpenShift's unique needs.
+- openshift-controller-manager: Similar to the Kubernetes controller manager, but this one runs controllers specific to OpenShift resources. For example, it manages the lifecycle of BuildConfigs, ImageStreams, and Routes. These controllers watch for changes in these OpenShift-specific resources and take action to maintain the desired state.
+
+---
