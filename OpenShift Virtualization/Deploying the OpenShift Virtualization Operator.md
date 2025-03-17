@@ -1,8 +1,5 @@
 # Deploying the OpenShift Virtualization Operator
 
-## Objectives
-Deploy the OpenShift Virtualization operator in an existing Red Hat OpenShift environment.
-
 ## Preparing an RHOCP Cluster for Virtualization
 OpenShift Virtualization requires specific infrastructure setups to function optimally. While traditionally deployed on-premise using bare metal systems, it is also supported on cloud-based bare metal servers from providers such as IBM Cloud and AWS.
 
