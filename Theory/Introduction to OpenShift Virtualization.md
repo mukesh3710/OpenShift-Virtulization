@@ -2,6 +2,7 @@
 
 ## Overview
 Red Hat OpenShift Virtualization extends OpenShift Container Platform (RHOCP) by enabling the management of virtual machine (VM) workloads alongside containerized applications. It is based on KubeVirt and utilizes Kubernetes-native mechanisms for VM orchestration.
+---
 
 ## Key Features
 - **Unified Platform:** Manage containers and VMs within the same OpenShift cluster.
@@ -38,6 +39,6 @@ Red Hat OpenShift Virtualization extends OpenShift Container Platform (RHOCP) by
 - **CDI Integration:** Streamline storage imports.
 - **GitOps Integration:** Automate VM deployment with OpenShift GitOps.
 
-- This summary provides a high-level view of OpenShift Virtualization, emphasizing its core components, features, and benefits.
+This summary provides a high-level view of OpenShift Virtualization, emphasizing its core components, features, and benefits.
 ---
 
