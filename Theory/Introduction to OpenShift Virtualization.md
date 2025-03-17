@@ -39,3 +39,63 @@ Red Hat OpenShift Virtualization extends OpenShift Container Platform (RHOCP) by
 - **GitOps Integration:** Automate VM deployment with OpenShift GitOps.
 ---
 
+# Kubernetes Architecture Overview
+
+## Objectives
+- Understand Kubernetes high-level architecture and operators.
+
+## Kubernetes Architecture
+Kubernetes is an orchestration service that simplifies the deployment, management, and scaling of containerized applications. It manages resources like CPU, RAM, storage, and networking while ensuring high availability and fault tolerance.
+
+Kubernetes follows a **declarative management** approach, where desired system states are defined, and Kubernetes ensures compliance. This differs from **imperative management**, where direct commands change system states.
+
+## Kubernetes Features
+Kubernetes provides several features that facilitate application deployment and scaling:
+- **Service discovery**
+- **Load balancing**
+- **Horizontal scaling**
+- **Self-healing**
+- **Automated rollout**
+- **Configuration management**
+- **Secrets management**
+
+## Key Kubernetes Terminology
+- **Operator**: A component that simplifies application lifecycle management.
+- **Resource**: Configurable and consumable components within a Kubernetes cluster.
+- **Control Plane**: Manages container lifecycle through API services.
+- **Data Plane**: Provides resources like storage, networking, and compute for workloads.
+- **Pod**: A group of containers representing an application or service.
+- **Container**: A lightweight executable image that includes application dependencies.
+
+## Kubernetes Operators
+Operators are Kubernetes-native applications that automate the management of workloads and services. Using the Kubernetes API, they extend cluster functionality and automate tasks such as deployments and scaling.
+
+### Kubernetes OperatorHub
+OperatorHub (https://operatorhub.io) is an open-source repository where operators are shared. Red Hat, AWS, Google Cloud, and Microsoft collaborated to provide a centralized marketplace for Kubernetes operators. Operators built using the **Operator Framework** can be accessed and shared through this hub.
+
+## Red Hat OpenShift Container Platform (RHOCP)
+RHOCP extends Kubernetes with enterprise-ready capabilities, including:
+- **Remote management**
+- **Multitenancy**
+- **Enhanced security**
+- **Monitoring and auditing**
+- **Application lifecycle management**
+- **Self-service developer interfaces**
+
+### RHOCP Technology Stack
+- **Red Hat Enterprise Linux CoreOS**: Lightweight OS for OpenShift nodes.
+- **CRI-O**: Secure, minimal container runtime.
+- **Kubernetes**: Open-source container orchestration.
+- **Self-service web console**: GUI for managing applications and clusters.
+- **Preinstalled services**: Logging, monitoring, and networking tools.
+- **Certified container images**: Includes runtimes, databases, and essential software.
+
+## Red Hat Marketplace
+Red Hat offers a catalog of enterprise-certified operators for OpenShift clusters. Organizations can explore, test, and install operators to enhance cluster functionality.
+
+### Virtualization Meets Containerization
+OpenShift Virtualization enables running virtual machines alongside containerized applications. This allows organizations to maintain traditional VM-based workloads while transitioning to containerized environments, reducing the need for separate virtualization solutions.
+
+### Note 
+With OpenShift Virtualization, businesses can manage both VMs and containers from a single platform, simplifying infrastructure management and optimizing resource utilization.
+---
