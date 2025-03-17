@@ -96,6 +96,5 @@ Red Hat offers a catalog of enterprise-certified operators for OpenShift cluster
 ### Virtualization Meets Containerization
 OpenShift Virtualization enables running virtual machines alongside containerized applications. This allows organizations to maintain traditional VM-based workloads while transitioning to containerized environments, reducing the need for separate virtualization solutions.
 
-### Note 
-With OpenShift Virtualization, businesses can manage both VMs and containers from a single platform, simplifying infrastructure management and optimizing resource utilization.
+- With OpenShift Virtualization, businesses can manage both VMs and containers from a single platform, simplifying infrastructure management and optimizing resource utilization.
 ---
