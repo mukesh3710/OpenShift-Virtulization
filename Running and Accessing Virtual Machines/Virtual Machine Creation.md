@@ -64,6 +64,3 @@ OpenShift provides cluster roles with specific permissions:
 - **kubevirt.io:view**: View virtualization resources.
 - **kubevirt.io:edit**: Modify virtualization resources but not runtime configurations.
 - **kubevirt.io:admin**: Full control over virtualization resources and runtime configurations.
-
-## References
-Refer to OpenShift documentation for detailed guidelines on VM creation, management, and access.
