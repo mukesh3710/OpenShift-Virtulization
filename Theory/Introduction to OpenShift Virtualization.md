@@ -38,6 +38,6 @@ Red Hat OpenShift Virtualization extends OpenShift Container Platform (RHOCP) by
 - **CDI Integration:** Streamline storage imports.
 - **GitOps Integration:** Automate VM deployment with OpenShift GitOps.
 
-This summary provides a high-level view of OpenShift Virtualization, emphasizing its core components, features, and benefits.
+- This summary provides a high-level view of OpenShift Virtualization, emphasizing its core components, features, and benefits.
 ---
 
