@@ -33,4 +33,5 @@ virsh start <vm> # Starts a VM
 virsh shutdown <vm> # Shuts down a VM
 virsh migrate <vm> # Migrates a VM to another host
 
+Command-line Monitoring:
 ```
