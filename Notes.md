@@ -12,6 +12,9 @@ virtctl port-forward vm/postgresql-rhel9 22080:80 # Accessing a VM with Port-For
 oc port-forward pod/virt-launcher-postgresql-rhel9-gbxws 22080:80 # with OC
 
 Create and Manage VM:
+oc get datasources -n openshift-virtualization-os-images # Verify Available DataSources
+oc get pvc -n openshift-virtualization-os-images
+virtctl create vm --name rhel9 --namespace vm --memory=5Gi --volume-datasource=src:openshift-virtualization-os-images/rhel9 # Create Mainfest and then apply 
 virtctl create vm --name postgresql-rhel9 --namespace production --memory=5Gi # Create Mainfest 
 virtctl stop/start/restart postgresql-rhel9 # stop/start & restart the VM 
 
