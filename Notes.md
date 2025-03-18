@@ -5,7 +5,7 @@
 
 
 
-```bash
+```yaml
 Console:
 virtctl console centos-stream9-scarlet-wolverine-83 -n vm # Open serial Console
 
