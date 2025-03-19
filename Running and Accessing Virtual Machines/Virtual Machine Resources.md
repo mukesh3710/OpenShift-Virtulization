@@ -23,7 +23,7 @@ A stateful set manages stateful applications, ensuring consistent, unique identi
 ## Difference Between Workload Controllers, VMs, and VMIs
 A Virtual Machine (VM) simulates physical resources such as CPU, memory, network interfaces, and storage, similar to StatefulSet pods. In Red Hat OpenShift Virtualization:
 - A **VM object** specifies a template for a running VM instance.
-- A **Virtual Machine Instance (VMI)** is the actual running instance of a VM.
+- A **Virtual Machine Instance (VMI)** is the actual running instance of a VM. (can create standalone vm - Orphan)
 - The **virt-controller** pod interacts with the **virt-handler** pod to create a **virt-launcher** pod that runs the VMI.
 
 ## Components of an OpenShift Virtual Machine
@@ -35,9 +35,9 @@ VMIs exist in pods and require components to maintain workload health, including
 - **RDP Console:** Provides graphical access for Windows-based VMIs.
 
 ### Network Interfaces
-- **Default Pod Network:** Assigns an IP from the cluster using NAT (masquerade binding).
+- **Default Pod Network:** Assigns an IP from the cluster using NAT (masquerade binding). (Default OVN)
 - **Multus:** Enables multiple interfaces and external networks using CNI.
-- **SR-IOV:** Provides high-performance network access through virtual function devices.
+- **SR-IOV:** Provides high-performance network access through virtual function devices. (Connect physical adapter)
 
 ### Persistent Volumes and Persistent Volume Claims
 A **Persistent Volume (PV)** represents existing storage, while a **Persistent Volume Claim (PVC)** requests specific storage resources.
