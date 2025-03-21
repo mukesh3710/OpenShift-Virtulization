@@ -148,7 +148,7 @@ OpenShift Virtualization RBAC:
 - **kubevirt.io:admin**: Full control over virtualization resources and runtime configurations.
 ---
 Summary:
-- In Red Hat OpenShift Virtualization, a VM object defines the template to create a VMI, which isthe running instance of the VM inside your cluster.
+- In Red Hat OpenShift Virtualization, a VM object defines the template to create a VMI, which is the running instance of the VM inside your cluster.
 - You can attach a persistent volume to a VMI by defining a PVC, to represent a request for a specific storage resource.
 - To list all VMIs in a cluster, use the oc get vmis command.
 - You can troubleshoot a VM by using the virsh command from within the VM’s virtlauncher pod and its libvirtd container.
