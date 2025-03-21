@@ -6,7 +6,6 @@ Console:
 virtctl console postgresql-rhel9  # Open serial Console
 virtctl vnc postgresql-rhel9 # VNC Console
 virtctl ssh -i .ssh/lab_rsa --username developer postgresql-rhel9 # SSH
-Accessing a VM with Port-Forward:
 virtctl port-forward vm/postgresql-rhel9 22080:80 # Accessing a VM with Port-Forward
 oc port-forward pod/virt-launcher-postgresql-rhel9-gbxws 22080:80 # with OC
 oc virt console <vm-name>  # Opens a serial console session to the VM
