@@ -12,8 +12,6 @@ oc virt console <vm-name>  # Opens a serial console session to the VM
 ```
 Create and Manage VM:
 ```yaml
-oc get datasources -n openshift-virtualization-os-images # Verify Available DataSources
-oc get pvc -n openshift-virtualization-os-images
 virtctl create vm --name rhel9 --namespace vm --memory=5Gi --volume-datasource=src:openshift-virtualization-os-images/rhel9 # Create Mainfest and then apply 
 virtctl create vm --name postgresql-rhel9 --namespace production --memory=5Gi # Create Mainfest 
 virtctl stop/start/restart postgresql-rhel9 # stop/start & restart the VM 
@@ -46,4 +44,9 @@ oc describe migration <migration-name> # Provides details on the progress and st
 Networking:
 ```yaml
 virtctl expose vm postgresql-rhel9 --name postgresql-service --type ClusterIP --port 5432 # Exposing a VM with Command-line Tools
+```
+Image:
+```yaml
+oc get datasources -n openshift-virtualization-os-images # Verify Available DataSources
+oc get pvc -n openshift-virtualization-os-images
 ```
