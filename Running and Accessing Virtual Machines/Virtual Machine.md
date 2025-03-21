@@ -1,4 +1,4 @@
-### Virtual Machine Resources
+### Virtual Machine
 ---
 Workload Controllers:
 - Red Hat OpenShift offers a set of resources to help run applications inside a cluster. The pods execute containers within an OpenShift cluster.
