@@ -37,4 +37,21 @@ virsh shutdown <vm> # Shuts down a VM
 virsh migrate <vm> # Migrates a VM to another host
 
 Command-line Monitoring:
-```
+oc get vms -n <namespace>   # Lists all virtual machines in the specified namespace
+oc describe vm <vm-name> -n <namespace>   # Shows detailed status, configurations, and recent events of a VM
+oc get vmi -n <namespace>   # Lists all running Virtual Machine Instances (VMIs) in the namespace
+oc describe vmi <vmi-name> -n <namespace>   # Displays detailed information about a specific running VM instance
+oc adm top vm -n <namespace>   # Shows CPU and memory usage of all VMs in the specified namespace
+oc adm top pod -n <namespace> | grep <vm-name>   # Filters resource usage information specific to VM-related pods
+oc logs -f vm/<vm-name> -n <namespace>   # Streams logs of a virtual machine for debugging
+oc logs -f vmi/<vmi-name> -n <namespace>   # Fetches logs from the running Virtual Machine Instance (VMI)
+oc get events -n <namespace> --sort-by='.lastTimestamp'   # Displays recent events related to virtual machines, sorted by time
+oc get pvc -n <namespace>   # Lists Persistent Volume Claims (PVCs) used by virtual machines
+oc describe pvc <pvc-name> -n <namespace>   # Shows detailed information about a specific storage volume attached to a VM
+oc get network-attachment-definitions -n <namespace>   # Lists available network configurations for VMs
+oc describe network-attachment-definition <network-name> -n <namespace>   # Displays detailed information about a specific network configuration
+oc get pods -o wide -n <namespace> | grep <vm-name>   # Shows VM-related pods along with IP addresses and node assignments
+oc virt console <vm-name> -n <namespace>   # Opens a serial console session to the VM
+oc get migration -n <namespace>   # Lists all active VM migrations
+oc describe migration <migration-name> -n <namespace>   # Provides details on the progress and status of a live migration
+
