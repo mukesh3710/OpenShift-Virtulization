@@ -1,4 +1,4 @@
-# Virtual Machine Resources
+### Virtual Machine Resources
 ---
 Workload Controllers:
 - Red Hat OpenShift offers a set of resources to help run applications inside a cluster. The pods execute containers within an OpenShift cluster.
@@ -68,3 +68,98 @@ Use Cases for Creating VMs: VMs in OpenShift Virtualization can be created using
 - **Declarative manifest files**
 - **Cloning existing VM objects**
 - **Migration operators and imports**
+---
+Virtual Machine Creation:
+- You can create a VM in OpenShift using the web console's Virtual Machine Creation Catalog or by defining YAML configurations.
+- Using the Catalog: Web console provides default templates for various operating systems. Users can define boot sources and customize parameters such as SSH keys, cloud-init configurations, and additional storage.
+- Virtual Machine Templates: Red Hat provides default templates with preconfigured networking, users, and storage. Templates can be customized. Installing the KubeVirt common-templates package allows the creation of additional OS templates.
+- YAML Definition: Users can define VMs and templates using YAML in the web console or CLI. YAML allows users to configure system resources, labels, boot images, and advanced options.
+---
+Virtual Machine Management:
+Each VM has a management page with the following sections:
+- **Overview**: Logs, resource utilization, and status.
+- **Metrics**: CPU, memory, storage, network, and migration metrics.
+- **YAML**: Directly edit the VM’s configuration.
+- **Configuration**:
+  - **Details**: Modify VM specs (CPU, memory, workload profile, hostname, boot order, etc.).
+  - **Storage**: Manage VM disks.
+  - **Network**: Configure network interfaces.
+  - **Scheduling**: Manage node selection, tolerations, and affinity rules.
+  - **SSH**: Configure SSH access.
+  - **Initial Run**: Manage cloud-init and Sysprep (for Windows VMs).
+  - **Metadata**: Add labels and annotations.
+- **Console**: Provides serial and VNC console access.
+- **Snapshots**: Manage VM snapshots.
+- **Diagnostics**: View VM and snapshot status.
+---
+Accessing Virtual Machines:
+- **Web Console**: VNC console for graphical access. Serial console for CLI access.
+- **CLI (virtctl tool)**:  `virtctl console vm-name` for serial console. `virtctl vnc vm-name` for graphical access.
+- **Other VNC Clients**: Use third-party VNC applications like TigerVNC or TightVNC. Windows VMs support RDP with the appropriate configurations.
+---
+Role-Based Access Control (RBAC)
+- **admin**: Can modify any project resource except quotas.
+- **cluster-admin**: Full cluster-wide permissions.
+- **edit**: Can modify most project objects but not roles and bindings.
+- **view**: Can view project objects but not modify them.
+
+OpenShift Virtualization RBAC:
+- **kubevirt.io:view**: View virtualization resources.
+- **kubevirt.io:edit**: Modify virtualization resources but not runtime configurations.
+- **kubevirt.io:admin**: Full control over virtualization resources and runtime configurations.
+---
+Virtual Machine Creation:
+- You can create a VM in OpenShift using the web console's Virtual Machine Creation Catalog or by defining YAML configurations.
+- Using the Catalog: Web console provides default templates for various operating systems. Users can define boot sources and customize parameters such as SSH keys, cloud-init configurations, and additional storage.
+- Virtual Machine Templates: Red Hat provides default templates with preconfigured networking, users, and storage. Templates can be customized. Installing the KubeVirt common-templates package allows the creation of additional OS templates.
+- YAML Definition: Users can define VMs and templates using YAML in the web console or CLI. YAML allows users to configure system resources, labels, boot images, and advanced options.
+---
+Virtual Machine Management:
+Each VM has a management page with the following sections:
+- **Overview**: Logs, resource utilization, and status.
+- **Metrics**: CPU, memory, storage, network, and migration metrics.
+- **YAML**: Directly edit the VM’s configuration.
+- **Configuration**:
+  - **Details**: Modify VM specs (CPU, memory, workload profile, hostname, boot order, etc.).
+  - **Storage**: Manage VM disks.
+  - **Network**: Configure network interfaces.
+  - **Scheduling**: Manage node selection, tolerations, and affinity rules.
+  - **SSH**: Configure SSH access.
+  - **Initial Run**: Manage cloud-init and Sysprep (for Windows VMs).
+  - **Metadata**: Add labels and annotations.
+- **Console**: Provides serial and VNC console access.
+- **Snapshots**: Manage VM snapshots.
+- **Diagnostics**: View VM and snapshot status.
+---
+Accessing Virtual Machines:
+- **Web Console**: VNC console for graphical access. Serial console for CLI access.
+- **CLI (virtctl tool)**:  `virtctl console vm-name` for serial console. `virtctl vnc vm-name` for graphical access.
+- **Other VNC Clients**: Use third-party VNC applications like TigerVNC or TightVNC. Windows VMs support RDP with the appropriate configurations.
+---
+Role-Based Access Control (RBAC)
+- **admin**: Can modify any project resource except quotas.
+- **cluster-admin**: Full cluster-wide permissions.
+- **edit**: Can modify most project objects but not roles and bindings.
+- **view**: Can view project objects but not modify them.
+
+OpenShift Virtualization RBAC:
+- **kubevirt.io:view**: View virtualization resources.
+- **kubevirt.io:edit**: Modify virtualization resources but not runtime configurations.
+- **kubevirt.io:admin**: Full control over virtualization resources and runtime configurations.
+---
+Summary:
+- In Red Hat OpenShift Virtualization, a VM object defines the template to create a VMI, which isthe running instance of the VM inside your cluster.
+- You can attach a persistent volume to a VMI by defining a PVC, to represent a request for a specific storage resource.
+- To list all VMIs in a cluster, use the oc get vmis command.
+- You can troubleshoot a VM by using the virsh command from within the VM’s virtlauncher pod and its libvirtd container.
+- Cluster administrators access the Observe > Dashboard interface to analyze VM metrics such as CPU utilization, memory utilization, and top VM resource consumers.
+- Cluster administrators access the Observe > Metrics interface to run Prometheus Query Language (PromQL) queries that examine information about the cluster and user-defined
+workloads as a dashboard or graph.
+- Cluster administrators can access all projects for monitoring, and developer users can access projects where they have at least view role permissions.
+- Default templates enable a basic installation with useful settings, and you can make changes according to your VM’s requirements.
+- From a VM’s management page, you can perform administrative operations, such as starting and stopping a VM, getting information about your VM, accessing the VM through a console, and adding new disks and network interfaces.
+- Default templates include Red Hat Enterprise Linux, CentOS, Fedora, and Microsoft Windows Server. You can also install other operating systems, such as Ubuntu or openSUSE, by installing the KubeVirt common templates package in your OpenShift cluster.
+- The virtctl tool is a client application for managing and connecting to VMs that are hosted in OpenShift or Kubernetes.
+- You can access the VNC console of a VM by using the virtctl vnc VM-name command.
+- The remote-viewer application is a remote desktop client to connect to a remote guest that supports the SPICE and VNC protocols.
+- TigerVNC is a tool for graphical desktop sharing, for Linux, Windows, and MacOS
