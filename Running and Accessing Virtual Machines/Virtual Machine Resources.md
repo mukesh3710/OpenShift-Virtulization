@@ -1,33 +1,21 @@
 # Virtual Machine Resources
-
-## Workload Controllers
-
-Red Hat OpenShift offers a set of resources to help run applications inside a cluster. The pods execute containers within an OpenShift cluster.
-
-Pods can execute one or more containers, acting as running application instances. Kubernetes workload resources manage applications to reduce the need to interact with individual pods directly.
-
-### Common Workload Resources
-
-#### Deployments
-A deployment object uses pod templates to define the desired state of an application. Deployments interact with a replica set to ensure the intended number of pods are available.
-
-#### Replica Sets
-A replica set ensures the specified quantity of pod replicas are available and healthy. It uses selectors to identify pods and maintains the deployment state by creating, updating, or deleting pods automatically.
-
-#### Daemon Sets
-A daemon set ensures that a pod runs on every selected node. Unlike a replica set, a daemon set is not bound to a specific number of replicas and automatically creates pods on new nodes with matching selectors.
-
-#### Stateful Sets
-A stateful set manages stateful applications, ensuring consistent, unique identities for each pod (network and storage) while maintaining persistent data.
-
-## Difference Between Workload Controllers, VMs, and VMIs
-A Virtual Machine (VM) simulates physical resources such as CPU, memory, network interfaces, and storage, similar to StatefulSet pods. In Red Hat OpenShift Virtualization:
+---
+Workload Controllers:
+- Red Hat OpenShift offers a set of resources to help run applications inside a cluster. The pods execute containers within an OpenShift cluster.
+- Pods can execute one or more containers, acting as running application instances. Kubernetes workload resources manage applications to reduce the need to interact with individual pods directly.
+---
+Common Workload Resources:
+- Deployments: A deployment object uses pod templates to define the desired state of an application. Deployments interact with a replica set to ensure the intended number of pods are available.
+- Replica Sets: A replica set ensures the specified quantity of pod replicas are available and healthy. It uses selectors to identify pods and maintains the deployment state by creating, updating, or deleting pods automatically.
+- Daemon Sets: A daemon set ensures that a pod runs on every selected node. Unlike a replica set, a daemon set is not bound to a specific number of replicas and automatically creates pods on new nodes with matching selectors.
+- Stateful Sets: A stateful set manages stateful applications, ensuring consistent, unique identities for each pod (network and storage) while maintaining persistent data.
+---
+Difference Between Workload Controllers, VMs, and VMIs: A Virtual Machine (VM) simulates physical resources such as CPU, memory, network interfaces, and storage, similar to StatefulSet pods. In Red Hat OpenShift Virtualization:
 - A **VM object** specifies a template for a running VM instance.
 - A **Virtual Machine Instance (VMI)** is the actual running instance of a VM. (can create standalone vm - Orphan)
 - The **virt-controller** pod interacts with the **virt-handler** pod to create a **virt-launcher** pod that runs the VMI.
-
-## Components of an OpenShift Virtual Machine
-VMIs exist in pods and require components to maintain workload health, including:
+---
+Components of an OpenShift Virtual Machine: VMIs exist in pods and require components to maintain workload health, including:
 
 ### Virtual Machine Consoles
 - **VNC Console:** Provides text-based and graphical access.
