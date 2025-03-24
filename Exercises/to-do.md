@@ -1,14 +1,15 @@
 # Creating and Accessing Virtual Machines from the Command Line
 
 
-- Create a new project
 - check available images/template available to create a vm
 - Create a new user, assign admin role to new project 
 - Create a anohter user, assign that can view/stop/start vm, can check logs and monitor the vm performace
-- Generate mainfest with virtctl to create virtual machine (user admin)
-- apply the mainfest to deploy the vm
 - give stress to machine, monitor the vm perofmace and check error logs 
 - stop/start mv (another user)
+
+- Generate mainfest with virtctl to create virtual machine (user admin)
+- apply the mainfest to deploy the vm
+
 --
 
 ## Objectives
