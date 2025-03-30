@@ -1,0 +1,91 @@
+### Managing Storage Devices on Virtual Machines
+
+Summary:
+- Storage in OpenShift Virtualization is managed using PVCs.
+- Multiple disk interfaces are available, with virtio-scsi being the most flexible.
+- Disks can be attached/detached, cloned, and resized dynamically.
+- Persistent storage sources include ephemeral disks, PVCs, URLs, and registries.
+- Expanding a disk requires storage class support and file system resizing inside the VM.
+
+Attaching Multiple Disks to a VM:
+- OpenShift Virtualization allows VMs to use multiple disks via Persistent Volume Claims (PVCs), which can be:
+- Imported from a URL
+- Cloned from an existing PVC
+- Created as blank storage
+- Inside the VM, the storage appears as a disk that can be formatted, partitioned, and mounted. The disk type depends on the interface selected:
+
+Disk Interfaces:
+- SCSI: Standard interface; disks appear as /dev/sdX on Linux.
+- VirtIO: High-performance interface; disks appear as /dev/vdX, but requires VirtIO drivers.
+- VirtIO-SCSI: Newer interface (available in OpenShift 4.16+), supports hot-plugging and removes the limitations of VirtIO.
+
+Hot Plugging Note:
+- Only SCSI supports hot plugging on running VMs.
+- VirtIO-SCSI removes the need to stop the VM for attaching/removing disks.
+
+Steps to Attach a Disk via OpenShift Web Console:
+- Navigate to Virtualization → VirtualMachines.
+- Select the VM.
+- Go to Overview → Storage.
+- Click Add Disk, fill out the form, and attach the disk.
+
+Selecting a Data Volume Source:
+- When creating a new disk, the data source determines how it is provisioned:
+| Source Type                  | Description                                                                                             | Data Persistence on VM Restart |
+|------------------------------|---------------------------------------------------------------------------------------------------------|--------------------------------|
+| **Ephemeral (Container Image)** | Uses a disk from a container image; data is lost on VM restart.                                         | Lost                           |
+| **PVC (Clone Existing PVC)** | Clones an existing PVC, ensuring the source PVC is unused before cloning.                                | Persistent                     |
+| **Empty Disk (Blank)** | Creates an unformatted raw disk for manual formatting and partitioning.                                  | Persistent                     |
+| **From URL** | Downloads a virtual disk from a URL (supports raw and qcow2 formats).                                    | Persistent                     |
+| **Registry (Creates PVC)** | Pulls a container image with a disk and extracts it into a PVC.                                         | Persistent                     |
+| **Upload** | Uploads a qcow2 disk image manually. 
+- Important Warning: Avoid attaching a single PVC to multiple VMs simultaneously unless the storage supports ReadWriteMany mode (e.g., NFS).
+- Standard filesystems like ext4 or XFS do not support concurrent access, leading to data corruption.
+
+Detaching a Disk from a VM:
+- Stop the VM before detaching the disk (unless using virtio-scsi).
+- Navigate to Overview → Storage, select the disk, and click Detach.
+
+Deleting the Disk Data:
+- Detaching a disk does not delete the associated PVC.
+- To permanently delete the disk:
+  - Go to Storage → PersistentVolumeClaims.
+  - Locate the PVC and delete it.
+  - Alternatively, use the command: `oc delete datavolume/mariadb-server-my-disk`
+
+Reattaching an Existing Disk:
+- After detaching a disk, it can be reattached to the same or another VM.
+- Stop the VM first, then go to Overview → Storage → Add Disk, select PVC, and choose the appropriate PVC.
+- Warning: Do not attach a PVC that is already mounted to another VM.
+
+Preallocating Disk Space:
+- By default, OpenShift Virtualization allocates disk space on demand. However, preallocation can be enabled for performance benefits.
+- Enable Preallocation: Check the Enable Preallocation box in the web console when adding a disk. Or define it in a DataVolume resource:
+```yaml
+apiVersion: cdi.kubevirt.io/v1beta1
+kind: DataVolume
+metadata:
+  name: datadisk
+spec:
+  preallocation: true
+  storage:
+    resources:
+      requests:
+        storage: 10Gi
+    storageClassName: ocs-external-storagecluster-ceph-rbd-virtualization
+  source:
+    blank: {}
+```
+
+Resizing a VM Disk (Expanding PVCs):
+- OpenShift allows expanding PVCs, but not shrinking them.
+- Check if Storage Class Supports Expansion `oc get storageclass ocs-external-storagecluster-ceph-rbd-virtualization -o yaml | grep allowVolumeExpansion` If the output includes allowVolumeExpansion: true, expansion is supported.
+- Expanding a PVC via Web Console: Go to Storage → PersistentVolumeClaims. Select the PVC and click Actions → Expand PVC. Enter the new size and confirm.
+- Expanding a PVC via CLI: Edit the PVC manually `oc edit pvc/mariadb-server-my-disk-rbd`
+```yaml
+spec:
+  resources:
+    requests:
+      storage: 8Gi  # Increase the size
+```
+- Expanding the VM File System: Restart the VM to detect the new disk size. Manually resize partitions and file systems inside the VM. Linux systems with cloud-init may auto-expand partitions on boot.
